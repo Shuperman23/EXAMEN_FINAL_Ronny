@@ -42,7 +42,7 @@ namespace BLL_EXAMEN.Mantenimientos
                     Obj_BD_DAL.sNomTabla = "Fabricantes";
                 }
 
-                Obj_BD_BLL.ExecDataAdapter(ref Obj_BD_DAL);
+                Obj_BD_BLL.EjecutaProcesosTabla(ref Obj_BD_DAL);
 
                 if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
                 {
@@ -94,7 +94,7 @@ namespace BLL_EXAMEN.Mantenimientos
                 cls_BD_DAL Obj_BD_DAL = new cls_BD_DAL();
                 cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
 
-                
+
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@Fabricante", "6", obj_Fabricantes_DAL.sFabricante);
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@Oficinas", "1", obj_Fabricantes_DAL.iOficinas);
@@ -111,9 +111,9 @@ namespace BLL_EXAMEN.Mantenimientos
                 Obj_BD_DAL.sIndAxn = "SCALAR";
                 Obj_BD_DAL.DT_Parametros = obj_Fabricantes_DAL.dtParametros;
 
-                Obj_BD_BLL.ExecCommand(ref Obj_BD_DAL);
+                Obj_BD_BLL.EjcutaProcesosComando(ref Obj_BD_DAL);
 
-                
+
             }
             catch (Exception ex)
             {
@@ -131,11 +131,11 @@ namespace BLL_EXAMEN.Mantenimientos
                 cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
 
                 obj_Fabricantes_DAL.dtParametros = null;
-                obj_Fabricantes_DAL.dtParametros = Obj_BD_BLL.Get_DT_Param(obj_Fabricantes_DAL.dtParametros);
+                obj_Fabricantes_DAL.dtParametros = Obj_BD_BLL.ObtieneDTParametros(obj_Fabricantes_DAL.dtParametros);
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdFabricante", "1", obj_Fabricantes_DAL.iIdFabricante);
-               
+
 
                 Obj_BD_DAL.sNomSP = ConfigurationManager.AppSettings["SP_Update_Fabricantes"];
                 Obj_BD_DAL.sIndAxn = "SCALAR";
@@ -176,7 +176,7 @@ namespace BLL_EXAMEN.Mantenimientos
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdFabricante", "1", obj_Fabricantes_DAL.iIdFabricante);
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdUsuario_Global", "1", obj_Fabricantes_DAL.iIdUsuarioGlobal);
 
-                
+
             }
             catch (Exception ex)
             {
