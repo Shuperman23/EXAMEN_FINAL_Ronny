@@ -53,6 +53,14 @@
     <Compile Include="Mantenimientos\cls_Vehiculos_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL_EXAMEN\DAL_EXAMEN.csproj">
+      <Project>{0d028180-088c-494d-b93f-77aba530e2bd}</Project>
+      <Name>DAL_EXAMEN</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
