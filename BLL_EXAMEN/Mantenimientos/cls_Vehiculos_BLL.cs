@@ -7,6 +7,7 @@ using System.Configuration;
 using DAL_EXAMEN.Mantenimientos;
 using BLL_EXAMEN.BD;
 using DAL_EXAMEN.BD;
+using System.Reflection;
 
 namespace BLL_EXAMEN.Mantenimientos
 {
@@ -30,7 +31,16 @@ namespace BLL_EXAMEN.Mantenimientos
                 }
                 else //filtrar
                 {
-                  
+                    obj_Vehiculos_DAL.dtParametros = null;
+                    obj_Vehiculos_DAL.dtParametros = Obj_BD_BLL.ObtieneDTParametros(obj_Vehiculos_DAL.dtParametros);
+
+                    //orden de parametros: nombre  , tipo de dato, valor del parametro
+                    obj_Vehiculos_DAL.dtParametros.Rows.Add("@Modelo", "6", obj_Vehiculos_DAL.sModelo);
+                    obj_Vehiculos_DAL.dtParametros.Rows.Add("@Fabricante", "1", obj_Vehiculos_DAL.iIdFabricante);
+
+                    Obj_BD_DAL.sNomSP = ConfigurationManager.AppSettings["SP_FILL_Vehiculos"];
+                    Obj_BD_DAL.DT_Parametros = obj_Vehiculos_DAL.dtParametros;
+                    Obj_BD_DAL.sNomTabla = "Vehiculos";
                 }
 
 
@@ -55,7 +65,9 @@ namespace BLL_EXAMEN.Mantenimientos
         {
             try
             {
-                
+
+                cls_BD_DAL Obj_BD_DAL = new cls_BD_DAL();
+                cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@IdVehiculo", "1", obj_Vehiculos_DAL.iIdVehiculo);
@@ -64,7 +76,7 @@ namespace BLL_EXAMEN.Mantenimientos
                 Obj_BD_DAL.DT_Parametros = obj_Vehiculos_DAL.dtParametros;
                 Obj_BD_DAL.sNomTabla = "Vehiculos";
 
-                Obj_BD_BLL.ExecDataAdapter(ref Obj_BD_DAL);
+                Obj_BD_BLL.EjecutaProcesosTabla(ref Obj_BD_DAL);
 
                 if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
                 {
@@ -94,8 +106,8 @@ namespace BLL_EXAMEN.Mantenimientos
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@Modelo", "6", obj_Vehiculos_DAL.sModelo);
-              
-                Obj_BD_BLL.ExecCommand(ref Obj_BD_DAL);
+
+                Obj_BD_BLL.EjcutaProcesosComando(ref Obj_BD_DAL);
 
                 if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
                 {
@@ -120,7 +132,9 @@ namespace BLL_EXAMEN.Mantenimientos
             try
             {
 
-              
+                cls_BD_DAL Obj_BD_DAL = new cls_BD_DAL();
+                cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
+
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@IdVehiculo", "1", obj_Vehiculos_DAL.iIdVehiculo);
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@Modelo", "6", obj_Vehiculos_DAL.sModelo);
@@ -157,7 +171,7 @@ namespace BLL_EXAMEN.Mantenimientos
                 cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
 
                 obj_Vehiculos_DAL.dtParametros = null;
-                obj_Vehiculos_DAL.dtParametros = Obj_BD_BLL.Get_DT_Param(obj_Vehiculos_DAL.dtParametros);
+                obj_Vehiculos_DAL.dtParametros = Obj_BD_BLL.ObtieneDTParametros(obj_Vehiculos_DAL.dtParametros);
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@IdVehiculo", "1", obj_Vehiculos_DAL.iIdVehiculo);

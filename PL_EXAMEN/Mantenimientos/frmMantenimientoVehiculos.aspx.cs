@@ -22,21 +22,18 @@ namespace PL_EXAMEN.Mantenimientos
         {
             try
             {
-                
+                String _mensaje = string.Empty;
+
+                cls_Vehiculos_DAL obj_Vehiculos_DAL = new cls_Vehiculos_DAL();
+                cls_Vehiculos_BLL obj_Vehiculos_BLL = new cls_Vehiculos_BLL();
+
                 obj_Vehiculos_DAL.iIdVehiculo = Convert.ToInt32(obj_Parametros[0]);
 
                 if (obj_Vehiculos_DAL.iIdVehiculo != 0)
                 {
                     obj_Vehiculos_BLL.Obtiene_Informacion_Vehiculo(ref obj_Vehiculos_DAL);
 
-                    if (obj_Vehiculos_DAL.dtDatos.Rows.Count != 0)
-                    {
-                        _mensaje = obj_Vehiculos_DAL.dtDatos.Rows[0][0].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][1].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][2].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][3].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][4].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][5].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][6].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][7].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][8].ToString() + "<SPLITER>" + obj_Vehiculos_DAL.dtDatos.Rows[0][9].ToString() + "<SPLITER>";
-                    }
-                    else
-                    {
-                        _mensaje = "No se encontraron registros";
-                    }
+
                 }
                 return _mensaje;
             }

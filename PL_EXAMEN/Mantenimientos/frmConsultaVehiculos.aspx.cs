@@ -22,8 +22,16 @@ namespace PL_EXAMEN.Mantenimientos
         {
             try
             {
+                String _mensaje = string.Empty;
 
-                
+                cls_Vehiculos_DAL obj_Vehiculos_DAL = new cls_Vehiculos_DAL();
+                cls_Vehiculos_BLL obj_Vehiculos_BLL = new cls_Vehiculos_BLL();
+
+                obj_Vehiculos_DAL.sModelo = obj_Parametros[0].ToString();
+                obj_Vehiculos_DAL.iIdFabricante = Convert.ToInt32(obj_Parametros[1].ToString());
+
+                obj_Vehiculos_BLL.listarFiltrarVehiculos(ref obj_Vehiculos_DAL);
+
 
                 if (obj_Vehiculos_DAL.dtDatos.Rows.Count != 0)
                 {
@@ -66,6 +74,6 @@ namespace PL_EXAMEN.Mantenimientos
             }
         }
 
-        
+
     }
 }
