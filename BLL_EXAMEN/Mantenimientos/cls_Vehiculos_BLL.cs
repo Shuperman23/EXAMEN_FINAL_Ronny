@@ -43,6 +43,7 @@ namespace BLL_EXAMEN.Mantenimientos
                     Obj_BD_DAL.sNomTabla = "Vehiculos";
                 }
 
+                Obj_BD_BLL.EjecutaProcesosTabla(ref Obj_BD_DAL);
 
                 if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
                 {
@@ -68,6 +69,9 @@ namespace BLL_EXAMEN.Mantenimientos
 
                 cls_BD_DAL Obj_BD_DAL = new cls_BD_DAL();
                 cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
+
+                obj_Vehiculos_DAL.dtParametros = null;
+                obj_Vehiculos_DAL.dtParametros = Obj_BD_BLL.ObtieneDTParametros(obj_Vehiculos_DAL.dtParametros);
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@IdVehiculo", "1", obj_Vehiculos_DAL.iIdVehiculo);
@@ -106,6 +110,20 @@ namespace BLL_EXAMEN.Mantenimientos
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@Modelo", "6", obj_Vehiculos_DAL.sModelo);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Modelo", "6", obj_Vehiculos_DAL.sModelo);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Ano", "1", obj_Vehiculos_DAL.iAno);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Pasajeros", "1", obj_Vehiculos_DAL.iPasajeros);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Cilindraje", "1", obj_Vehiculos_DAL.iCilindraje);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Fecha_Fabricacion", "8", obj_Vehiculos_DAL.dFechaFabricacion);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Id_Fabricante", "1", obj_Vehiculos_DAL.iIdFabricante);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Transmision", "6", obj_Vehiculos_DAL.sTransmision);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Descripcion", "6", obj_Vehiculos_DAL.sDescripcion);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@Estado", "6", obj_Vehiculos_DAL.sEstado);
+                obj_Vehiculos_DAL.dtParametros.Rows.Add("@IdUsuario_Global", "1", obj_Vehiculos_DAL.iIdUsuarioGlobal);
+               
+                Obj_BD_DAL.sNomSP = ConfigurationManager.AppSettings["SP_Insert_Vehiculos"];
+                Obj_BD_DAL.sIndAxn = "SCALAR";
+                Obj_BD_DAL.DT_Parametros = obj_Vehiculos_DAL.dtParametros;
 
                 Obj_BD_BLL.EjcutaProcesosComando(ref Obj_BD_DAL);
 
@@ -135,6 +153,10 @@ namespace BLL_EXAMEN.Mantenimientos
                 cls_BD_DAL Obj_BD_DAL = new cls_BD_DAL();
                 cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
 
+                obj_Vehiculos_DAL.dtParametros = null;
+                obj_Vehiculos_DAL.dtParametros = Obj_BD_BLL.ObtieneDTParametros(obj_Vehiculos_DAL.dtParametros);
+
+
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@IdVehiculo", "1", obj_Vehiculos_DAL.iIdVehiculo);
                 obj_Vehiculos_DAL.dtParametros.Rows.Add("@Modelo", "6", obj_Vehiculos_DAL.sModelo);
@@ -153,6 +175,17 @@ namespace BLL_EXAMEN.Mantenimientos
                 Obj_BD_DAL.DT_Parametros = obj_Vehiculos_DAL.dtParametros;
 
                 Obj_BD_BLL.EjcutaProcesosComando(ref Obj_BD_DAL);
+                if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
+
+                {
+                    obj_Vehiculos_DAL.sMSJError = Obj_BD_DAL.sMsjErrorBD;
+                    obj_Vehiculos_DAL.sValorScalar = Obj_BD_DAL.sValorScalar;
+                }
+                else
+                {
+                    obj_Vehiculos_DAL.sMSJError = Obj_BD_DAL.sMsjErrorBD;
+                    obj_Vehiculos_DAL.sValorScalar = null;
+                }
 
 
             }
