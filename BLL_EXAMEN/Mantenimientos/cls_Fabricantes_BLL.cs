@@ -206,6 +206,22 @@ namespace BLL_EXAMEN.Mantenimientos
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdUsuario_Global", "1", obj_Fabricantes_DAL.iIdUsuarioGlobal);
 
 
+                Obj_BD_DAL.sNomSP = ConfigurationManager.AppSettings["SP_Elim_Fabricantes"];
+                Obj_BD_DAL.sIndAxn = "SCALAR";
+                Obj_BD_DAL.DT_Parametros = obj_Fabricantes_DAL.dtParametros;
+
+                Obj_BD_BLL.EjcutaProcesosComando(ref Obj_BD_DAL);
+
+                if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
+                {
+                    obj_Fabricantes_DAL.sMSJError = Obj_BD_DAL.sMsjErrorBD;
+                    obj_Fabricantes_DAL.sValorScalar = Obj_BD_DAL.sValorScalar;
+                }
+                else
+                {
+                    obj_Fabricantes_DAL.sMSJError = Obj_BD_DAL.sMsjErrorBD;
+                    obj_Fabricantes_DAL.sValorScalar = null;
+                }
             }
             catch (Exception ex)
             {
