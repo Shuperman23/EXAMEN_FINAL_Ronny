@@ -95,7 +95,16 @@ namespace PL_EXAMEN.Mantenimientos
         {
             try
             {
-                
+                String _mensaje = string.Empty;
+
+                cls_Fabricantes_DAL obj_Fabricantes_DAL = new cls_Fabricantes_DAL();
+                cls_Fabricantes_BLL obj_Fabricantes_BLL = new cls_Fabricantes_BLL();
+
+                obj_Fabricantes_DAL.iIdFabricante = Convert.ToInt32(obj_Parametros[0]);
+                obj_Fabricantes_DAL.iIdUsuarioGlobal = Convert.ToInt32(obj_Parametros[1]);
+
+                obj_Fabricantes_BLL.eliminarFabricantes(ref obj_Fabricantes_DAL);
+
                 if (obj_Fabricantes_DAL.sValorScalar == "-1")
                 {
                     _mensaje = "-1" + "<SPLITER>" + "No es posible completar la acción. Existen registros de vehículos asociados al Fabricante.";
@@ -109,6 +118,7 @@ namespace PL_EXAMEN.Mantenimientos
                     _mensaje = obj_Fabricantes_DAL.sValorScalar + "<SPLITER>" + "Fabricante Eliminado de forma Satisfactoria.";
                 }
 
+                return _mensaje;
             }
             catch (Exception ex)
             {
