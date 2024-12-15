@@ -18,6 +18,7 @@ namespace PL_EXAMEN.LogIn
 
         }
 
+        [WebMethod]
         public static string InicioSesionUsuarios(List<string> obj_Parametros)
         {
             try

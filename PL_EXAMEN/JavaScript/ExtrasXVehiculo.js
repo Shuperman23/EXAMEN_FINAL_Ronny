@@ -17,7 +17,7 @@ function cargaExtrascombo() {
     if ((obj_Parametros[1] != 0) && (obj_Parametros[1] != undefined)) {
         jQuery.ajax({
             type: "POST",
-            url: "frmMantenimientoExtrasXVehiculo.aspx/CargaListaExtrasCombo_abcdefg",
+            url: "frmMantenimientoExtrasXVehiculo.aspx/CargaListaExtrasCombo",
             data: parametros,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -84,7 +84,7 @@ function cargaListaExtrasXVehiculo() {
     if ((obj_Parametros[1] != 0) && (obj_Parametros[1] != undefined)) {
         jQuery.ajax({
             type: "POST",
-            url: "frmMantenimientoExtrasXVehiculo.aspx/CargaListaExtrasXVehiculo_abcdefg",
+            url: "frmMantenimientoExtrasXVehiculo.aspx/CargaListaExtrasXVehiculo",
             data: parametros,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -149,7 +149,7 @@ function asignaExtrasXVehiculo() {
     if ((obj_Parametros[2] != 0) && (obj_Parametros[2] != undefined)) {
         jQuery.ajax({
             type: "POST",
-            url: "frmMantenimientoExtrasXVehiculo.aspx/AsignaExtrasXVehiculo_abcdefg",
+            url: "frmMantenimientoExtrasXVehiculo.aspx/AsignaExtrasXVehiculo",
             data: parametros,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -233,7 +233,7 @@ function eliminaExtraXVehiculo(pUni) {
     if ((obj_Parametros[2] != 0) && (obj_Parametros[2] != undefined)) {
         jQuery.ajax({
             type: "POST",
-            url: "frmMantenimientoExtrasXVehiculo.aspx/EliminaExtrasXVehiculo_abcdefg",
+            url: "frmMantenimientoExtrasXVehiculo.aspx/EliminaExtrasXVehiculo",
             data: parametros,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
