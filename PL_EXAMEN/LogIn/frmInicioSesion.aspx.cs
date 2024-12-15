@@ -17,8 +17,7 @@ namespace PL_EXAMEN.LogIn
         {
 
         }
-        
-        [WebMethod]
+
         public static string InicioSesionUsuarios(List<string> obj_Parametros)
         {
             try
@@ -35,7 +34,26 @@ namespace PL_EXAMEN.LogIn
                 //Ejecutamos la logica de negocio de usuarios
                 Obj_Usuarios_BLL.Valida_Inicio_Sesion_Usuarios(ref Obj_Usuarios_DAL);
 
-                
+                if (Obj_Usuarios_DAL.sValorScalar == "-1")
+                {
+                    _mensaje = "-1" + "<SPLITER>" + "El usuario se encuentra inactivo, por favor contacte al administrador del sistema";
+                }
+                else if (Obj_Usuarios_DAL.sValorScalar == "0")
+                {
+                    _mensaje = "0" + "<SPLITER>" + "El usuario y / o contraseña ingresado no son válidos, verifique!!!";
+                }
+                else
+                {
+                    Obj_Usuarios_DAL.iIdUsuario = Convert.ToInt32(Obj_Usuarios_DAL.sValorScalar);
+
+                    Obj_Usuarios_BLL.Obtiene_Informacion_Usuario(ref Obj_Usuarios_DAL);
+
+                    _mensaje = Obj_Usuarios_DAL.dtDatos.Rows[0][0].ToString() + "<SPLITER>" + "Bienvenido de nuevo: " +
+                        Obj_Usuarios_DAL.dtDatos.Rows[0][1].ToString() + " " + Obj_Usuarios_DAL.dtDatos.Rows[0][2].ToString() + " " + Obj_Usuarios_DAL.dtDatos.Rows[0][3].ToString() +
+                        "<SPLITER>" + Obj_Usuarios_DAL.dtDatos.Rows[0][4].ToString() +
+                        "<SPLITER>" + Obj_Usuarios_DAL.dtDatos.Rows[0][1].ToString() + " " + Obj_Usuarios_DAL.dtDatos.Rows[0][2].ToString() + " " + Obj_Usuarios_DAL.dtDatos.Rows[0][3].ToString();
+                }
+
                 return _mensaje;
             }
             catch (Exception ex)
