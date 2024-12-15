@@ -95,8 +95,7 @@ function obtieneDetalleFabricante() {
     obj_Parametros[0] = $.cookie("FABUNI");
     obj_Parametros[1] = $.cookie("GLBUNI");
 
-    var parametros = '{"obj_Parametros" : ' + obj_Parametros + '}';
-    parametros = JSON.stringify({ 'obj_Parametros': obj_Parametros });
+    var parametros = JSON.stringify({ 'obj_Parametros': obj_Parametros });
 
     if ((obj_Parametros[1] != 0) && (obj_Parametros[1] != undefined)) {
         jQuery.ajax({
@@ -114,13 +113,8 @@ function obtieneDetalleFabricante() {
                         text: "Error de Conexión a la base de datos. Por favor, contacte al administrador del sistema.",
                         icon: "error"
                     });
-                }
-                else {
-                    var arreglo = new Array();
-                    var str;
-
-                    str = res;
-                    arreglo = (str.split("<SPLITER>"));
+                } else {
+                    var arreglo = res.split("<SPLITER>");
                     var resultado = arreglo[0];
 
                     if (resultado === "No se encontraron registros") {
@@ -152,8 +146,7 @@ function obtieneDetalleFabricante() {
             error: function (xhr, err) {
             }
         });
-    }
-    else {
+    } else {
         Swal.fire({
             position: 'center-center',
             icon: 'error',
@@ -163,14 +156,11 @@ function obtieneDetalleFabricante() {
             timer: 4500,
             timerProgressBar: true
         });
-        // se redirecciona al index
         setTimeout(function () {
-
             location.href = "/LogIn/frmInicioSesion.aspx";
         }, 5000);
     }
-};
-
+}
 function formatDate(dateStr) {
     var dateParts = dateStr.split("/");
     var day = dateParts[0].padStart(2, '0');
@@ -178,6 +168,7 @@ function formatDate(dateStr) {
     var year = dateParts[2];
     return `${year}-${month}-${day}`;
 }
+
 
 function mantenimientoFabricante() {
     var obj_Parametros = new Array();
@@ -271,6 +262,7 @@ function mantenimientoFabricante() {
 
 };
 
+
 function eliminaFabricante(pUni) {
 
     var obj_Parametros = new Array();
@@ -357,7 +349,6 @@ function eliminaFabricante(pUni) {
         }, 5000);
     }
 };
-
 
 
 

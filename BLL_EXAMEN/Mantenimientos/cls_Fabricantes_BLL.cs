@@ -68,6 +68,16 @@ namespace BLL_EXAMEN.Mantenimientos
                 cls_BD_DAL Obj_BD_DAL = new cls_BD_DAL();
                 cls_BD_BLL Obj_BD_BLL = new cls_BD_BLL();
 
+                obj_Fabricantes_DAL.dtParametros = null;
+                obj_Fabricantes_DAL.dtParametros = Obj_BD_BLL.ObtieneDTParametros(obj_Fabricantes_DAL.dtParametros);
+
+
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdFabricante", "1", obj_Fabricantes_DAL.iIdFabricante);
+
+                Obj_BD_DAL.sNomSP = ConfigurationManager.AppSettings["SP_INFO_Fabricantes"];
+                Obj_BD_DAL.DT_Parametros = obj_Fabricantes_DAL.dtParametros;
+                Obj_BD_DAL.sNomTabla = "Fabricantes";
+
 
                 Obj_BD_BLL.EjecutaProcesosTabla(ref Obj_BD_DAL);
 
@@ -113,6 +123,16 @@ namespace BLL_EXAMEN.Mantenimientos
 
                 Obj_BD_BLL.EjcutaProcesosComando(ref Obj_BD_DAL);
 
+                if (Obj_BD_DAL.sMsjErrorBD == string.Empty)
+                {
+                    obj_Fabricantes_DAL.sMSJError = Obj_BD_DAL.sMsjErrorBD;
+                    obj_Fabricantes_DAL.sValorScalar = Obj_BD_DAL.sValorScalar;
+                }
+                else
+                {
+                    obj_Fabricantes_DAL.sMSJError = Obj_BD_DAL.sMsjErrorBD;
+                    obj_Fabricantes_DAL.sValorScalar = null;
+                }
 
             }
             catch (Exception ex)
@@ -135,7 +155,16 @@ namespace BLL_EXAMEN.Mantenimientos
 
                 //orden de parametros: nombre  , tipo de dato, valor del parametro
                 obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdFabricante", "1", obj_Fabricantes_DAL.iIdFabricante);
-
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Fabricante", "6", obj_Fabricantes_DAL.sFabricante);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Oficinas", "1", obj_Fabricantes_DAL.iOficinas);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Telefono", "6", obj_Fabricantes_DAL.sTelefono);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Correo", "6", obj_Fabricantes_DAL.sCorreo);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Fecha_Fundacion", "8", obj_Fabricantes_DAL.dFechaFundacion);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Fecha_Operaciones", "8", obj_Fabricantes_DAL.dFechaOperaciones);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Pais", "6", obj_Fabricantes_DAL.sPais);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Direccion", "6", obj_Fabricantes_DAL.sDireccion);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@Estado", "6", obj_Fabricantes_DAL.sEstado);
+                obj_Fabricantes_DAL.dtParametros.Rows.Add("@IdUsuario_Global", "1", obj_Fabricantes_DAL.iIdUsuarioGlobal);
 
                 Obj_BD_DAL.sNomSP = ConfigurationManager.AppSettings["SP_Update_Fabricantes"];
                 Obj_BD_DAL.sIndAxn = "SCALAR";
